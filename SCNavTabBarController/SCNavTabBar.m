@@ -71,6 +71,12 @@
     _navgationTabBar = [[UIScrollView alloc] initWithFrame:CGRectMake(DOT_COORDINATE, DOT_COORDINATE, functionButtonX, NAV_TAB_BAR_HEIGHT)];
     _navgationTabBar.showsHorizontalScrollIndicator = NO;
     [self addSubview:_navgationTabBar];
+    
+    // nav下面加一条分割线
+    CGFloat lineSize = 1.0 / [UIScreen mainScreen].scale;
+    UIView *bottomDivider = [[UIView alloc] initWithFrame:CGRectMake(0, self.frame.size.height-lineSize, self.frame.size.width, lineSize)];
+    bottomDivider.backgroundColor = [UIColor colorWithRed:0.867 green:0.867 blue:0.867 alpha:1.0];
+    [self addSubview:bottomDivider];
     //隐藏navBar底部阴影
 //    [self viewShowShadow:self shadowRadius:4.0f shadowOpacity:10.0f];
 }
