@@ -22,6 +22,8 @@
     NSArray         *_itemsWidth;           // an array of items' width
     BOOL            _canPopAllItemMenu;     // is showed arrow button
     BOOL            _popItemMenu;           // is needed pop item menu
+    
+    UILabel         *_tipsView;             // show tips
 }
 
 @end
@@ -77,6 +79,15 @@
     UIView *bottomDivider = [[UIView alloc] initWithFrame:CGRectMake(0, self.frame.size.height-lineSize, self.frame.size.width, lineSize)];
     bottomDivider.backgroundColor = [UIColor colorWithRed:0.867 green:0.867 blue:0.867 alpha:1.0];
     [self addSubview:bottomDivider];
+    
+    // 添加一个tipsView(点击分类可直接跳转)
+    _tipsView = [[UILabel alloc] initWithFrame:CGRectMake(18, 16, 100, 20)];
+    _tipsView.text = @"点击分类可直接跳转";
+    _tipsView.font = [UIFont systemFontOfSize:12.0f];
+    _tipsView.textColor = [UIColor colorWithRed:0.631 green:0.631 blue:0.631 alpha:1.0];
+    [_tipsView sizeToFit];
+    _tipsView.hidden = YES;
+    [self addSubview:_tipsView];
     //隐藏navBar底部阴影
 //    [self viewShowShadow:self shadowRadius:4.0f shadowOpacity:10.0f];
 }
@@ -188,6 +199,7 @@
         [self viewShowShadow:_arrowButton shadowRadius:DOT_COORDINATE shadowOpacity:DOT_COORDINATE];
         [UIView animateWithDuration:0.2f delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
             _navgationTabBar.hidden = YES;
+            _tipsView.hidden = !_navgationTabBar.hidden;
             _arrowButton.transform = CGAffineTransformMakeRotation(M_PI/4);
         } completion:^(BOOL finished) {
             [UIView animateWithDuration:0.1f animations:^{
@@ -209,6 +221,7 @@
             _popView.hidden = !_popView.hidden;
             _arrowButton.transform = CGAffineTransformIdentity;
         } completion:^(BOOL finished) {
+            _tipsView.hidden = !_tipsView.hidden;
             _navgationTabBar.hidden = !_navgationTabBar.hidden;
             _arrowButton.layer.shadowRadius = 4.0f;
             _arrowButton.layer.shadowOpacity = 20.0f;
