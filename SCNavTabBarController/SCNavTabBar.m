@@ -219,9 +219,9 @@
     {
         [UIView animateWithDuration:0.5f animations:^{
             _popView.hidden = !_popView.hidden;
+            _tipsView.hidden = !_tipsView.hidden;
             _arrowButton.transform = CGAffineTransformIdentity;
         } completion:^(BOOL finished) {
-            _tipsView.hidden = !_tipsView.hidden;
             _navgationTabBar.hidden = !_navgationTabBar.hidden;
             _arrowButton.layer.shadowRadius = 4.0f;
             _arrowButton.layer.shadowOpacity = 20.0f;
