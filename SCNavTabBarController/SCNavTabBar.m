@@ -53,12 +53,16 @@
     [self addTapGestureRecognizer];
 }
 
+- (CGFloat)tabsShowWidth
+{
+    return _canPopAllItemMenu ? (SCREEN_WIDTH - ARROW_BUTTON_WIDTH) : SCREEN_WIDTH;
+}
+
 - (void)viewConfig
 {
-    CGFloat functionButtonX = _canPopAllItemMenu ? (SCREEN_WIDTH - ARROW_BUTTON_WIDTH) : SCREEN_WIDTH;
     if (_canPopAllItemMenu)
     {
-        _arrowButton = [[UIImageView alloc] initWithFrame:CGRectMake(functionButtonX, DOT_COORDINATE, ARROW_BUTTON_WIDTH, ARROW_BUTTON_WIDTH)];
+        _arrowButton = [[UIImageView alloc] initWithFrame:CGRectMake([self tabsShowWidth], DOT_COORDINATE, ARROW_BUTTON_WIDTH, ARROW_BUTTON_WIDTH)];
         _arrowButton.layer.shadowColor = [UIColor lightGrayColor].CGColor;
         _arrowButton.image = _arrowImage;
         _arrowButton.userInteractionEnabled = YES;
@@ -70,7 +74,7 @@
         [_arrowButton addGestureRecognizer:tapGestureRecognizer];
     }
 
-    _navgationTabBar = [[UIScrollView alloc] initWithFrame:CGRectMake(DOT_COORDINATE, DOT_COORDINATE, functionButtonX, NAV_TAB_BAR_HEIGHT)];
+    _navgationTabBar = [[UIScrollView alloc] initWithFrame:CGRectMake(DOT_COORDINATE, DOT_COORDINATE, [self tabsShowWidth], NAV_TAB_BAR_HEIGHT)];
     _navgationTabBar.showsHorizontalScrollIndicator = NO;
     [self addSubview:_navgationTabBar];
     
@@ -230,6 +234,59 @@
     }
 }
 
+- (void)changeTabBarToIndex:(NSInteger)newIndex fromIndex:(NSInteger)oldIndex{
+    if(newIndex == oldIndex){
+        return;
+    }
+    
+    CGFloat minOffset = 0;
+    UIButton *lastBtn = _items.lastObject;
+    CGFloat maxOffset = (lastBtn.frame.origin.x + lastBtn.frame.size.width) - SCREEN_WIDTH + (_canPopAllItemMenu? ARROW_BUTTON_WIDTH : 0);
+    
+    UIButton *button = _items[newIndex];
+    if(newIndex == 0){
+        [_navgationTabBar setContentOffset:CGPointMake(minOffset, DOT_COORDINATE) animated:YES];
+        [self doLineAnimation:button index:newIndex];
+        return;
+    }
+    
+    // is last
+    if(newIndex == _itemTitles.count-1){
+        [_navgationTabBar setContentOffset:CGPointMake(maxOffset, DOT_COORDINATE) animated:YES];
+        [self doLineAnimation:button index:newIndex];
+        return;
+    }
+    
+    BOOL isForward = newIndex > oldIndex;
+    NSInteger nextIndex = newIndex + (isForward? 1 : -1);
+    UIButton *nextBtn = _items[nextIndex];
+    
+    CGFloat newOffset = (nextBtn.frame.origin.x + nextBtn.frame.size.width) - SCREEN_WIDTH + (_canPopAllItemMenu? ARROW_BUTTON_WIDTH : 0);
+    if(!isForward){
+        newOffset = nextBtn.frame.origin.x;
+    }
+    
+    if(nextIndex != 0 && newIndex != _items.count-1){
+        newOffset += (isForward? 40.0f : -40.0f);
+    }
+    
+    if(newOffset < minOffset){
+        newOffset = minOffset;
+    }
+    
+    if(newOffset > maxOffset) {
+        newOffset = maxOffset;
+    }
+    [_navgationTabBar setContentOffset:CGPointMake(newOffset, DOT_COORDINATE) animated:YES];
+    [self doLineAnimation:button index:newIndex];
+}
+
+- (void)doLineAnimation:(UIButton *)button index:(NSInteger)index {
+    [UIView animateWithDuration:0.2f animations:^{
+        _line.frame = CGRectMake(button.frame.origin.x + 2.0f, _line.frame.origin.y, [_itemsWidth[index] floatValue] - 4.0f, _line.frame.size.height);
+    }];
+}
+
 #pragma mark -
 #pragma mark - Public Methods
 - (void)setArrowImage:(UIImage *)arrowImage
@@ -238,30 +295,11 @@
     _arrowButton.image = _arrowImage;
 }
 
+
 - (void)setCurrentItemIndex:(NSInteger)currentItemIndex
 {
+    [self changeTabBarToIndex:currentItemIndex fromIndex:_currentItemIndex];
     _currentItemIndex = currentItemIndex;
-    UIButton *button = _items[currentItemIndex];
-    CGFloat flag = _canPopAllItemMenu ? (SCREEN_WIDTH - ARROW_BUTTON_WIDTH) : SCREEN_WIDTH;
-    
-    if (button.frame.origin.x + button.frame.size.width > flag)
-    {
-        CGFloat offsetX = button.frame.origin.x + button.frame.size.width - flag;
-        if (_currentItemIndex < [_itemTitles count] - 1)
-        {
-            offsetX = offsetX + 40.0f;
-        }
-        
-        [_navgationTabBar setContentOffset:CGPointMake(offsetX, DOT_COORDINATE) animated:YES];
-    }
-    else
-    {
-        [_navgationTabBar setContentOffset:CGPointMake(DOT_COORDINATE, DOT_COORDINATE) animated:YES];
-    }
-    
-    [UIView animateWithDuration:0.2f animations:^{
-        _line.frame = CGRectMake(button.frame.origin.x + 2.0f, _line.frame.origin.y, [_itemsWidth[currentItemIndex] floatValue] - 4.0f, _line.frame.size.height);
-    }];
 }
 
 - (void)updateData
