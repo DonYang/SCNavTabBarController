@@ -240,10 +240,18 @@
     }
     
     CGFloat minOffset = 0;
+    
     UIButton *lastBtn = _items.lastObject;
     CGFloat maxOffset = (lastBtn.frame.origin.x + lastBtn.frame.size.width) - SCREEN_WIDTH + (_canPopAllItemMenu? ARROW_BUTTON_WIDTH : 0);
     
     UIButton *button = _items[newIndex];
+    
+    // max length is smaller than tabbar length
+    if(maxOffset <= 0){
+        [self doLineAnimation:button index:newIndex];
+        return;
+    }
+    
     if(newIndex == 0){
         [_navgationTabBar setContentOffset:CGPointMake(minOffset, DOT_COORDINATE) animated:YES];
         [self doLineAnimation:button index:newIndex];
