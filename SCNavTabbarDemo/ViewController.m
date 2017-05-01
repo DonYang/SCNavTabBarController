@@ -58,8 +58,10 @@
     NSArray *vcs  = @[oneViewController, twoViewController, threeViewController, fourViewController, fiveViewController, sixViewController, sevenViewController, eightViewController, ninghtViewController];
     
     SCNavTabBarController *navTabBarController = [[SCNavTabBarController alloc] initWithSubViewControllers:vcs];
-    navTabBarController.navTabBarColor = [UIColor whiteColor];
+    navTabBarController.navTabBarColor = [UIColor grayColor];
     navTabBarController.navTabBarFont = [UIFont systemFontOfSize: 12];
+    navTabBarController.navTabBarFontColor = [UIColor whiteColor];
+    navTabBarController.navTabBarDividerColor = [UIColor redColor];
 //    navTabBarController.navTabBarColor = [UIColor colorWithRed:0.5 green:0.5 blue:1 alpha:1];
 //    navTabBarController.navTabBarSelectedTextColor = [UIColor colorWithRed:0.8 green:0.5 blue:0.5 alpha:1];
 //    navTabBarController.navTabBarTextFont = [UIFont systemFontOfSize: 20 ];

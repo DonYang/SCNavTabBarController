@@ -88,6 +88,8 @@
     _currentIndex = 1;
     _navTabBarColor = _navTabBarColor ? _navTabBarColor : NavTabbarColor;
     _navTabBarFont = _navTabBarFont ? _navTabBarFont : [UIFont systemFontOfSize:14.0f];
+    _navTabBarFontColor = _navTabBarFontColor ? _navTabBarFontColor : [UIColor whiteColor];
+    _navTabBarDividerColor = _navTabBarDividerColor ? _navTabBarDividerColor : [UIColor colorWithRed:0.867 green:0.867 blue:0.867 alpha:1.0];
     
     // Load all title of children view controllers
     _titles = [[NSMutableArray alloc] initWithCapacity:_subViewControllers.count];
@@ -107,6 +109,8 @@
     _navTabBar.itemTitles = _titles;
     _navTabBar.arrowImage = _navTabBarArrowImage;
     _navTabBar.titleFont = _navTabBarFont;
+    _navTabBar.titleFontColor = _navTabBarFontColor;
+    _navTabBar.dividerColor = _navTabBarDividerColor;
     [_navTabBar updateData];
     
     _mainView = [[UIScrollView alloc] initWithFrame:CGRectMake(DOT_COORDINATE, _navTabBar.frame.origin.y + _navTabBar.frame.size.height, SCREEN_WIDTH, SCREEN_HEIGHT - _navTabBar.frame.origin.y - _navTabBar.frame.size.height - STATUS_BAR_HEIGHT - NAVIGATION_BAR_HEIGHT)];

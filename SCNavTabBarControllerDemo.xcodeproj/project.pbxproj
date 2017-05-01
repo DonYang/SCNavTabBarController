@@ -142,7 +142,7 @@
 				TargetAttributes = {
 					4841AF3E1A1A2941001308F7 = {
 						CreatedOnToolsVersion = 6.1;
-						DevelopmentTeam = C63Z5Z32BB;
+						DevelopmentTeam = N2F8Q9NN7S;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -291,7 +291,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Xiao Baotong (CTJ684EEY5)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = C63Z5Z32BB;
+				DEVELOPMENT_TEAM = N2F8Q9NN7S;
 				INFOPLIST_FILE = SCNavTabbarDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -307,7 +307,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Xiao Baotong (CTJ684EEY5)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = C63Z5Z32BB;
+				DEVELOPMENT_TEAM = N2F8Q9NN7S;
 				INFOPLIST_FILE = SCNavTabbarDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

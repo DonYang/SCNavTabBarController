@@ -16,6 +16,7 @@
     UIImageView     *_arrowButton;          // arrow button
     
     UIView          *_line;                 // underscore show which item selected
+    UIView          *_bottomDivider;
     SCPopView       *_popView;              // when item menu, will show this view
     
     NSMutableArray  *_items;                // SCNavTabBar pressed item
@@ -80,9 +81,9 @@
     
     // nav下面加一条分割线
     CGFloat lineSize = 1.0 / [UIScreen mainScreen].scale;
-    UIView *bottomDivider = [[UIView alloc] initWithFrame:CGRectMake(0, self.frame.size.height-lineSize, self.frame.size.width, lineSize)];
-    bottomDivider.backgroundColor = [UIColor colorWithRed:0.867 green:0.867 blue:0.867 alpha:1.0];
-    [self addSubview:bottomDivider];
+    _bottomDivider = [[UIView alloc] initWithFrame:CGRectMake(0, self.frame.size.height-lineSize, self.frame.size.width, lineSize)];
+    _bottomDivider.backgroundColor = [UIColor colorWithRed:0.867 green:0.867 blue:0.867 alpha:1.0];
+    [self addSubview:_bottomDivider];
     
     // 添加一个tipsView(点击分类可直接跳转)
     _tipsView = [[UILabel alloc] initWithFrame:CGRectMake(18, 16, 100, 20)];
@@ -115,7 +116,7 @@
         button.frame = CGRectMake(buttonX, DOT_COORDINATE, [widths[index] floatValue], NAV_TAB_BAR_HEIGHT);
         [button setTitle:_itemTitles[index] forState:UIControlStateNormal];
         button.titleLabel.font = _titleFont;
-        [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        [button setTitleColor:_titleFontColor forState:UIControlStateNormal];
         [button addTarget:self action:@selector(itemPressed:) forControlEvents:UIControlEventTouchUpInside];
         [_navgationTabBar addSubview:button];
         
@@ -303,6 +304,11 @@
     _arrowButton.image = _arrowImage;
 }
 
+- (void)setDividerColor:(UIColor *)dividerColor
+{
+    _dividerColor = dividerColor ? dividerColor : [UIColor colorWithRed:0.867 green:0.867 blue:0.867 alpha:1.0];
+    _bottomDivider.backgroundColor = _dividerColor;
+}
 
 - (void)setCurrentItemIndex:(NSInteger)currentItemIndex
 {
