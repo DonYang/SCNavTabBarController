@@ -41,6 +41,11 @@
 @property (nonatomic, strong)   UIColor     *dividerColor;
 @property (nonatomic, strong)   UIColor     *titleFontColor;
 
+@property (nonatomic, strong)   UIColor     *buttonShadowColor;
+@property (nonatomic, assign)   CGFloat     buttonShadowRadius;
+@property (nonatomic, assign)   CGFloat     buttonShadowOpacity;
+@property (nonatomic, assign)   CGSize      buttonShadowOffset;
+
 /**
  *  Initialize Methods
  *

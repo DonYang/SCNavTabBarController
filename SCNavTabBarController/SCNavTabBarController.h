@@ -25,6 +25,11 @@
 @property (nonatomic, strong)   UIColor     *navTabBarDividerColor;     // divider between tab and vc
 @property (nonatomic, strong)   UIImage     *navTabBarArrowImage;
 
+@property (nonatomic, strong)   UIColor     *extendButtonShadowColor;
+@property (nonatomic, assign)   CGFloat     extendButtonShadowRadius;
+@property (nonatomic, assign)   CGFloat     extendButtonShadowOpacity;
+@property (nonatomic, assign)   CGSize      extendButtonShadowOffset;
+
 /**
  *  Initialize Methods
  *

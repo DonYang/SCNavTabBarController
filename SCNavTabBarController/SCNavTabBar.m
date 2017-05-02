@@ -36,6 +36,11 @@
     self = [super initWithFrame:frame];
     if (self)
     {
+        _buttonShadowColor = [UIColor lightGrayColor];
+        _buttonShadowRadius = 4.0f;
+        _buttonShadowOpacity = 1.0f;
+        _buttonShadowOffset = CGSizeMake(0, -5);
+        
         _canPopAllItemMenu = can;
         [self initConfig];
     }
@@ -64,13 +69,13 @@
     if (_canPopAllItemMenu)
     {
         _arrowButton = [[UIImageView alloc] initWithFrame:CGRectMake([self tabsShowWidth], DOT_COORDINATE, ARROW_BUTTON_WIDTH, ARROW_BUTTON_WIDTH)];
-        _arrowButton.layer.shadowColor = [UIColor lightGrayColor].CGColor;
         _arrowButton.image = _arrowImage;
         _arrowButton.userInteractionEnabled = YES;
         [self addSubview:_arrowButton];
-        _arrowButton.layer.shadowRadius = 4.0f;
-        _arrowButton.layer.shadowOpacity = 20.0f;
-        _arrowButton.layer.shadowOffset = CGSizeMake(0, -5);
+        _arrowButton.layer.shadowColor = _buttonShadowColor.CGColor;
+        _arrowButton.layer.shadowRadius = _buttonShadowRadius;
+        _arrowButton.layer.shadowOpacity = _buttonShadowOpacity;
+        _arrowButton.layer.shadowOffset = _buttonShadowOffset;
         UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(functionButtonPressed)];
         [_arrowButton addGestureRecognizer:tapGestureRecognizer];
     }
@@ -228,9 +233,9 @@
             _arrowButton.transform = CGAffineTransformIdentity;
         } completion:^(BOOL finished) {
             _navgationTabBar.hidden = !_navgationTabBar.hidden;
-            _arrowButton.layer.shadowRadius = 4.0f;
-            _arrowButton.layer.shadowOpacity = 20.0f;
-            _arrowButton.layer.shadowOffset = CGSizeMake(0, -5);
+            _arrowButton.layer.shadowRadius = _buttonShadowRadius;
+            _arrowButton.layer.shadowOpacity = _buttonShadowOpacity;
+            _arrowButton.layer.shadowOffset = _buttonShadowOffset;
         }];
     }
 }
@@ -298,6 +303,27 @@
 
 #pragma mark -
 #pragma mark - Public Methods
+
+- (void)setButtonShadowColor:(UIColor *)buttonShadowColor {
+    _arrowButton.layer.shadowColor = buttonShadowColor.CGColor;
+    _buttonShadowColor = buttonShadowColor;
+}
+
+- (void)setButtonShadowRadius:(CGFloat)buttonShadowRadius {
+    _arrowButton.layer.shadowRadius = buttonShadowRadius;
+    _buttonShadowRadius = buttonShadowRadius;
+}
+
+- (void)setButtonShadowOpacity:(CGFloat)buttonShadowOpacity {
+    _arrowButton.layer.shadowOpacity = buttonShadowOpacity;
+    _buttonShadowOpacity = buttonShadowOpacity;
+}
+
+- (void)setButtonShadowOffset:(CGSize)buttonShadowOffset {
+    _arrowButton.layer.shadowOffset = buttonShadowOffset;
+    _buttonShadowOffset = buttonShadowOffset;
+}
+
 - (void)setArrowImage:(UIImage *)arrowImage
 {
     _arrowImage = arrowImage ? arrowImage : _arrowImage;

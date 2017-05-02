@@ -26,9 +26,20 @@
 #pragma mark - Life Cycle
 #pragma mark -
 
+- (instancetype)init {
+    self = [super init];
+    if (self) {
+        _extendButtonShadowColor = [UIColor lightGrayColor];
+        _extendButtonShadowRadius = 4.0f;
+        _extendButtonShadowOpacity = 1.0f;
+        _extendButtonShadowOffset = CGSizeMake(0, -5);
+    }
+    return self;
+}
+
 - (id)initWithCanPopAllItemMenu:(BOOL)can
 {
-    self = [super init];
+    self = [self init];
     if (self)
     {
         _canPopAllItemMenu = can;
@@ -38,7 +49,7 @@
 
 - (id)initWithSubViewControllers:(NSArray *)subViewControllers
 {
-    self = [super init];
+    self = [self init];
     if (self)
     {
         _subViewControllers = subViewControllers;
@@ -48,7 +59,7 @@
 
 - (id)initWithParentViewController:(UIViewController *)viewController
 {
-    self = [super init];
+    self = [self init];
     if (self)
     {
         [self addParentController:viewController];
@@ -111,6 +122,10 @@
     _navTabBar.titleFont = _navTabBarFont;
     _navTabBar.titleFontColor = _navTabBarFontColor;
     _navTabBar.dividerColor = _navTabBarDividerColor;
+    _navTabBar.buttonShadowColor = _extendButtonShadowColor;
+    _navTabBar.buttonShadowRadius = _extendButtonShadowRadius;
+    _navTabBar.buttonShadowOpacity = _extendButtonShadowOpacity;
+    _navTabBar.buttonShadowOffset = _extendButtonShadowOffset;
     [_navTabBar updateData];
     
     _mainView = [[UIScrollView alloc] initWithFrame:CGRectMake(DOT_COORDINATE, _navTabBar.frame.origin.y + _navTabBar.frame.size.height, SCREEN_WIDTH, SCREEN_HEIGHT - _navTabBar.frame.origin.y - _navTabBar.frame.size.height - STATUS_BAR_HEIGHT - NAVIGATION_BAR_HEIGHT)];
