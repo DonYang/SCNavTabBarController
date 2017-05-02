@@ -39,7 +39,7 @@
         button.frame = CGRectMake(buttonX, buttonY, [itemWidths[index] floatValue], ITEM_HEIGHT);
         [button setTitle:_itemNames[index] forState:UIControlStateNormal];
         button.titleLabel.font = _titleFont;
-        [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        [button setTintColor:_titleFontColor];
         [button addTarget:self action:@selector(itemPressed:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:button];
         

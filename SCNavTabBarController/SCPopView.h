@@ -21,4 +21,5 @@
 @property (nonatomic, weak)     id      <SCPopViewDelegate>delegate;
 @property (nonatomic, strong)   NSArray *itemNames;
 @property (nonatomic, strong)   UIFont  *titleFont;
+@property (nonatomic, strong)   UIColor *titleFontColor;
 @end
