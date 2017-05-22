@@ -30,6 +30,8 @@
 @property (nonatomic, assign)   CGFloat     extendButtonShadowOpacity;
 @property (nonatomic, assign)   CGSize      extendButtonShadowOffset;
 
+@property (nonatomic, assign)   CGFloat     bottomBarHeight;
+
 /**
  *  Initialize Methods
  *

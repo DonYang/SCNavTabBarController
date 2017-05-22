@@ -33,6 +33,7 @@
         _extendButtonShadowRadius = 4.0f;
         _extendButtonShadowOpacity = 1.0f;
         _extendButtonShadowOffset = CGSizeMake(0, -5);
+        _bottomBarHeight = 0;
     }
     return self;
 }
@@ -128,7 +129,7 @@
     _navTabBar.buttonShadowOffset = _extendButtonShadowOffset;
     [_navTabBar updateData];
     
-    _mainView = [[UIScrollView alloc] initWithFrame:CGRectMake(DOT_COORDINATE, _navTabBar.frame.origin.y + _navTabBar.frame.size.height, SCREEN_WIDTH, SCREEN_HEIGHT - _navTabBar.frame.origin.y - _navTabBar.frame.size.height - STATUS_BAR_HEIGHT - NAVIGATION_BAR_HEIGHT)];
+    _mainView = [[UIScrollView alloc] initWithFrame:CGRectMake(DOT_COORDINATE, _navTabBar.frame.origin.y + _navTabBar.frame.size.height, SCREEN_WIDTH, SCREEN_HEIGHT - _navTabBar.frame.origin.y - _navTabBar.frame.size.height - STATUS_BAR_HEIGHT - NAVIGATION_BAR_HEIGHT - self.bottomBarHeight)];
     _mainView.delegate = self;
     _mainView.pagingEnabled = YES;
     _mainView.bounces = _mainViewBounces;
