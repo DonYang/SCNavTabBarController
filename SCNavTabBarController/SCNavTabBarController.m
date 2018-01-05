@@ -34,6 +34,7 @@
         _extendButtonShadowOpacity = 1.0f;
         _extendButtonShadowOffset = CGSizeMake(0, -5);
         _bottomBarHeight = 0;
+        _rotateRadian = M_PI/4;
     }
     return self;
 }
@@ -120,6 +121,7 @@
     _navTabBar.lineColor = _navTabBarLineColor;
     _navTabBar.itemTitles = _titles;
     _navTabBar.arrowImage = _navTabBarArrowImage;
+    _navTabBar.rotateRadian = _rotateRadian;
     _navTabBar.titleFont = _navTabBarFont;
     _navTabBar.titleFontColor = _navTabBarFontColor;
     _navTabBar.dividerColor = _navTabBarDividerColor;

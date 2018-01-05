@@ -32,6 +32,8 @@
 
 @property (nonatomic, assign)   CGFloat     bottomBarHeight;
 
+@property (nonatomic, assign)   CGFloat     rotateRadian;
+
 /**
  *  Initialize Methods
  *

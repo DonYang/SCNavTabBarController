@@ -45,6 +45,7 @@
 @property (nonatomic, assign)   CGFloat     buttonShadowRadius;
 @property (nonatomic, assign)   CGFloat     buttonShadowOpacity;
 @property (nonatomic, assign)   CGSize      buttonShadowOffset;
+@property (nonatomic, assign)   CGFloat     rotateRadian;
 
 /**
  *  Initialize Methods

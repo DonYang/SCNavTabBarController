@@ -54,6 +54,7 @@
 {
     _items = [@[] mutableCopy];
     _arrowImage = [UIImage imageNamed:SCNavTabbarSourceName(@"arrow.png")];
+    _rotateRadian = M_PI / 4;
     
     [self viewConfig];
     [self addTapGestureRecognizer];
@@ -210,7 +211,7 @@
         [UIView animateWithDuration:0.2f delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
             _navgationTabBar.hidden = YES;
             _tipsView.hidden = !_navgationTabBar.hidden;
-            _arrowButton.transform = CGAffineTransformMakeRotation(M_PI/4);
+            _arrowButton.transform = CGAffineTransformMakeRotation(_rotateRadian);
         } completion:^(BOOL finished) {
             [UIView animateWithDuration:0.1f animations:^{
                 if (!_popView)
